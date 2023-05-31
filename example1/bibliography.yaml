@@ -1,0 +1,65 @@
+Putnam1975:
+  entry-type: book
+  author: Hilary Putnam
+  booktitle: Mathematics, Matter, and Method. Philosopical Papers.
+  title: The logic of quantum mechnanics
+  location: Cambridge (England)
+  year: '1975'
+  volume: '1'
+  pages: 174 f.
+  section: primary
+
+Hanson2010:
+  entry-type: custom
+  marker: Hanson, William H.
+  show-inline: "#smallcaps[William H. Hanson (2010)]"
+  show-bibliography: "Hanson, Wiliam H.: Logic, the A Priori, and the Empirical. In: THEORIA. An International Journal for Theory, History and Foundations of Science. Jg. 56 (2/2008). S. 171­-177"
+  section: primary
+
+KrV:
+  entry-type: custom
+  marker: Kant, Immanuel
+  show-inline: "KrV"
+  show-bibliography: "#smallcaps[Kant, Immanuel]: Kritik der reinen Vernunft"
+  section: primary
+
+Politeia:
+  entry-type: custom
+  marker: Platon
+  show-inline: "Politeia"
+  show-bibliography: "#smallcaps[Platon]: Politeia IV"
+  section: primary
+
+Lohnstein2011:
+  entry-type: book
+  year: '2011'
+  title: Formale Semantik und natürliche Sprache
+  author: Horst Lohnstein
+  location: Göttingen
+  pages: '4'
+  section: primary
+
+Regier2017:
+  entry-type: book
+  author:
+  - Terry Regier
+  - Yang Xu
+  year: '2017'
+  volume: '8'
+  booktitle: WIREs Cognitive Science
+  title: The Sapir-Whorf hypothesis and inference under uncertainty
+  location: Berkeley (California)
+  url: https://doi.org/10.1002/wcs.1440
+  publisher: John Wiley & Sons, Inc.
+  doi: 10.1002/wcs.1440
+  number: '6'
+  month: apr
+  section: secondary
+
+Molenaar2018:
+  entry-type: book
+  author: Laura S. Molenaar
+  location: Blaricum (Niederlande)
+  title: 'Quine and Loglan: the Influence of Philosophical Ideas on the Creation of a Logical Language'
+  pages: 7 f.
+  year: '2018'
