@@ -1,3 +1,5 @@
+#import "remove-accents.typ": remove-accents
+
 #let TCBSTATES = (
     last-citation: state("tcb-last-citation"),
     used-citations: state("tcb-bibliography-citations-used"),
@@ -209,7 +211,7 @@
 
     let names = parse-names(object.at("author"))
 
-    return names.map(name => name.last+", "+name.first+" "+name.middle).join("; ", last: " & ")
+    return remove-accents(names.map(name => name.last+", "+name.first+" "+name.middle).join("; ", last: " & ") + ": " + object.at("title") + ". " + object.at("year"))
 }
 
 #let generate-bibliography(location,
