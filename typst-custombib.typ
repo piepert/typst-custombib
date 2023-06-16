@@ -53,6 +53,10 @@
    TCBSTATES.style.update(data)
 }
 
+#let tcb-has-key(location, key) = {
+    return key in TCBSTATES.data.at(location)
+}
+
 #let tcb-cite(key, postfix: none, prefix: none, wrap-single: true) = {
     TCBSTATES.last-citation.update(key)
     TCBSTATES.citation-history.update(k => (k, key).flatten())

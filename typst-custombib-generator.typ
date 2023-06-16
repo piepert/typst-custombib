@@ -187,7 +187,8 @@
     postfix: none,
     prefix: none) = {
 
-    generate-citation(style,
+    generate-citation(location,
+        style,
         bib-data,
         key,
         postfix: postfix,
@@ -266,11 +267,7 @@
     }
 
     let splitter = "\\#"
-
-    // TODO: GENERATE DIFFERENT SECTIONS
-    stack(dir: ttb,
-        spacing: 1em,
-        ..used.at("none", default: ())
+    let unsectioned-citations = used.at("none", default: ())
             .used
             .map(e => e.sort-by+splitter+e.key)
             .sorted()
@@ -279,7 +276,13 @@
                     TCBSTATES.style.at(location),
                     TCBSTATES.data.at(location),
                     e.split(splitter).last(), // key
-                    citation-position: "bibliography"))))
+                    citation-position: "bibliography")))
+
+    if unsectioned-citations.len() > 0 {
+        stack(dir: ttb,
+            spacing: 1em,
+            ..unsectioned-citations)
+    }
 
     if show-sections {
         for s in used.keys() {
