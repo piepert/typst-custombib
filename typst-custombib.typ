@@ -6,10 +6,10 @@
     fn-false(elem)
 }
 
-#let ifhaskey(elem, key, fn-true, fn-false: k => none) = if elem.at(key, default: none) != none {
+#let ifhaskey(elem, key, fn-true, ..k) = if elem.at(key, default: none) != none {
     fn-true(elem)
-} else {
-    fn-false(elem)
+} else if k.pos().len() > 0 {
+    k.pos().first()(elem)
 }
 
 #let get-bibliography-data(location) = {
@@ -29,6 +29,12 @@
 
         } else if "title" not in data.at(entry) or "author" not in data.at(entry) {
             return strong(text(red, [`author` AND `title` NEED TO BE SET IN #entry.]))
+        }
+
+        for k in data.at(entry).keys() {
+            if type(data.at(entry).at(k)) == "integer" {
+                data.at(entry).at(k) = str(data.at(entry).at(k))
+            }
         }
     }
 
