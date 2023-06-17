@@ -88,6 +88,7 @@
     let entry = bib-data.at(key, default: none)
 
     let format = get-option(location, citation-position+".format")
+    let mutator = get-option(location, citation-position+".mutator")
 
     if type(format) == "content" {
         return format
@@ -99,6 +100,10 @@
 
     entry.insert("postfix", postfix)
     entry.insert("prefix", prefix)
+
+    if type(mutator) != "content" {
+        entry = mutator(entry)
+    }
 
     if entry.entry-type == "custom" {
         let styler = get-option(location, "custom."+citation-position)
