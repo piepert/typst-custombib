@@ -9,7 +9,7 @@
 )
 
 #let parse-name(name) = {
-    let splits = name.split(" ")
+    let splits = name.replace("\\ ", "<SPACE>").split(" ")
     let first = none
     let middle = none
     let last = none
@@ -27,7 +27,9 @@
         middle = splits.slice(1, splits.len()-1).join(" ")
     }
 
-    (first: first, middle: middle, last: last)
+    (first: if first != none { first.replace("<SPACE>", " ") },
+        middle: if middle != none { middle.replace("<SPACE>", " ") },
+        last: if last != none { last.replace("<SPACE>", " ") })
 }
 
 #let parse-names(names) = {
@@ -85,6 +87,11 @@
 
     let bib-data = TCBSTATES.data.at(location)
     let style = TCBSTATES.style.at(location)
+
+    if bib-data == none or style == none {
+        panic("bibliography error!")
+    }
+
     let entry = bib-data.at(key, default: none)
 
     let format = get-option(location, citation-position+".format")
@@ -211,7 +218,7 @@
             return s
         }
 
-        return object.at(s, default: strong(text(red, [THE SORT-BY FACTOR IS NOT IN #object.key!])))
+        return object.at(s, default: strong(text(red, [THE SORT-BY FACTOR #s IS NOT IN #object.key!])))
     }
 
     let names = parse-names(object.at("author"))
@@ -241,8 +248,9 @@
         used.insert(s, (section: s, heading: sections.at(s), used: ()))
     }
 
+    let bib-data = TCBSTATES.data.at(location)
     for key in TCBSTATES.used-citations.at(location) {
-        let entry = TCBSTATES.data.at(location).at(key, default: none)
+        let entry = bib-data.at(key, default: none)
 
         if entry == none {
             return strong(text(red, [KEY #key NOT FOUND!]))

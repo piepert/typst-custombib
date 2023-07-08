@@ -38,6 +38,10 @@
         }
     }
 
+    if data == none {
+        panic("error loading bib data!")
+    }
+
     TCBSTATES.data.update(data)
     TCBSTATES.used-citations.update(())
     TCBSTATES.citation-history.update(())
@@ -66,7 +70,9 @@
 #let tcb-cite(key, postfix: none, prefix: none, wrap-single: true) = {
     TCBSTATES.last-citation.update(key)
     TCBSTATES.citation-history.update(k => (k, key).flatten())
-    TCBSTATES.used-citations.update(k => if key not in k {
+    TCBSTATES.used-citations.update(k => if k == none {
+        (key,)
+    } else if key not in k {
         (k, key).flatten()
     } else {
         k
