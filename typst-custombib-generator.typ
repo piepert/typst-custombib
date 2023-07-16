@@ -223,7 +223,7 @@
 
     let names = parse-names(object.at("author"))
 
-    return remove-accents(names.map(name => name.last+", "+name.first+" "+name.middle).join("; ", last: " & ") + ": " + object.at("title") + ". " + object.at("year"))
+    return remove-accents(if "author-sorter" in object { object.author-sorter } else { names.map(name => name.last+", "+name.first+" "+name.middle).join("; ", last: " & ") } + ": " + object.at("title") + ". " + object.at("year"))
 }
 
 #let generate-bibliography(location,
